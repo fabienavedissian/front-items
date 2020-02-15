@@ -1,0 +1,10 @@
+<section class="section">
+    <ul class="section__list">
+        <li class="section__item">
+            <mat-checkbox class="checkbox checkbox-first" (change)="onSelectAll($event)" [checked]="allItemsSelected">Select all</mat-checkbox>
+        </li>
+        <li class="section__item" *ngFor="let item of items; let i = index">
+            <mat-checkbox class="checkbox checkbox-item" [checked]="item.checked" (change)="onSelectItem($event, i)">Item {{ i + 1 }}</mat-checkbox>
+        </li>
+    </ul>
+</section>
