@@ -21,31 +21,31 @@ export class HomeComponent {
   /** Items */
   public items: ItemModel[] = [
     {
-      display: 'Item',
+      display: 'Item 1',
       checked: false
     },
     {
-      display: 'Item',
+      display: 'Item 2',
       checked: false
     },
     {
-      display: 'Item',
+      display: 'Item 3',
       checked: false
     },
     {
-      display: 'Item',
+      display: 'Item 4',
       checked: false
     }
   ];
   constructor() { }
 
   /**
-   * 
-   * @param event
-   * On event change checkbox "Select All" if true we checked all checkbox.
+   *
+   * @param event MatCheckboxChange
+   * @description On event change checkbox "Select All" if true we checked all checkbox.
    */
   public onSelectAll(event: MatCheckboxChange): void {
-    console.log(event);
+    this.allItemsSelected = event.checked;
     if (event.checked) {
       for (const item of this.items) {
         item.checked = true;
@@ -55,12 +55,16 @@ export class HomeComponent {
 
   /**
    *
-   * @param event
-   * @param index
-   *  On event change on select item if all items are checked so we checked "Select All" checkbox.
+   * @param event MatCheckboxChange
+   * @param index Number
+   * @description On event change on select item if all items are checked so we checked "Select All" checkbox.
    */
   public onSelectItem(event: MatCheckboxChange, index: number): void {
     this.items[index].checked = event.checked;
+    if (!event.checked) {
+      this.allItemsSelected = false;
+      return;
+    }
     let allItemsSelected: boolean = true;
     for (const item of this.items) {
       if (!item.checked) {
